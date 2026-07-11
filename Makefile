@@ -11,40 +11,35 @@ PYTHON_INTERPRETER = python
 #################################################################################
 
 
-## Install Python dependencies
+## Install Python dependencies; At first it only sync main deps then also dev if it installed
 .PHONY: requirements
 requirements:
-	uv sync --all-groups
+	uv sync
 
-## Install dev tools
+## Install dev deps; all tools and other libraries
 .PHONY: dev_tools
 dev_tools:
 	uv add --group dev ruff ty commitizen
-
-## Install support notebook backend library
-.PHONY: nb_deps
-nb_deps:
-	uv add --group notebook marimo
-	uv sync --all-groups
-
-## Install libraries for exploratory data analysis
-.PHONY: eda_deps
-eda_deps:
-	uv add --group eda numpy pandas matplotlib plotly scipy
-	uv sync --all-groups
-
-## Install libraries for classical machine learning
-.PHONY: ml_classic_deps
-ml_classic_deps:
-	uv add --group ml_classic scikit-learn xgboost lightgbm catboost
-	uv sync --all-groups
-
-## Install libraries for deep learning
-.PHONY: ml_dl_deps
-ml_dl_deps:
-	uv add --group ml_dl torch torchvision
-	uv sync --all-groups
 	
+.PHONY: EDA
+EDA:
+	uv add --group dev numpy pandas scipy matplotlib plotly seaborn
+
+.PHONY: scikitlearn_ml
+scikitlearn_ml:
+	uv add --group dev scikit-learn
+	
+.PHONY: ensembletrees_ml
+ensembletrees_ml:
+	uv add --group dev xgboost lightgbm catboost
+	
+.PHONY: pytorch_dl
+pytorch_dl:
+	uv add --group dev torch
+
+.PHONY: torchvision_dl
+torchvision_dl:
+	uv add --group dev torchvision
 
 ## Delete all compiled Python files
 .PHONY: clean

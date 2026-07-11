@@ -46,35 +46,31 @@ version_scheme = "pep440"
 version_provider = "uv"
 update_changelog_on_bump = true
 major_version_zero = true
-[dependency-groups]
-dev = [
-    "commitizen>=4.16.3",
-    "ruff>=0.15.16",
-    "ty>=0.0.46",
-]
-eda = [
-    "matplotlib>=3.10.9",
-    "numpy>=2.4.6",
-    "pandas>=3.0.3",
-    "plotly>=6.8.0",
-    "scipy>=1.17.1",
-]
-ml-dl = [
-    "torch>=2.12.0",
-    "torchvision>=0.27.0",
-]
-notebook = [
-    "marimo>=0.23.9",
-]
+
 
 # defining the custom index and prevent other packages from using this index (by explicit = true)
 [[tool.uv.index]]
 name = "pytorch-cuda"
 url = "https://download.pytorch.org/whl/cu132"
-explicit = true  # Prevents other packages from using this index
+explicit = true # Prevents other packages from using this index
 
-# ensure a specific package installs exclusively from your custom index
+#ensure a specific package installs exclusively from your custom index
 [tool.uv.sources]
 torch = { index = "pytorch-cuda" }
 torchvision = { index = "pytorch-cuda" }
+
+[dependency-groups]
+dev = [
+    "commitizen>=4.16.4",
+    "matplotlib>=3.11.0",
+    "numpy>=2.5.1",
+    "pandas>=3.0.3",
+    "plotly>=6.9.0",
+    "ruff>=0.15.21",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.18.0",
+    "seaborn>=0.13.2",
+    "torch>=2.13.0",
+    "ty>=0.0.58",
+]
 
