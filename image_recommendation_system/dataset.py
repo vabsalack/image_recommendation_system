@@ -1,10 +1,16 @@
 from pathlib import Path
 
+from kaggle.api.kaggle_api_extended import KaggleApi
 from loguru import logger
+from rich import print
 from tqdm import tqdm
 import typer
 
-from image_recommendation_system.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
+from image_recommendation_system.config import (
+    KAGGLE_DATASET_URL,
+    PROCESSED_DATA_DIR,
+    RAW_DATA_DIR,
+)
 
 app = typer.Typer()
 
@@ -23,6 +29,22 @@ def main(
             logger.info("Something happened for iteration 5.")
     logger.success("Processing dataset complete.")
     # -----------------------------------------
+
+
+@app.command("download")
+def download_dataset_from_kaggle(url=KAGGLE_DATASET_URL, custom_dir=RAW_DATA_DIR):
+
+    try:
+        api = KaggleApi()
+        api.authenticate()
+
+        api.dataset_download_files(dataset=url, path=custom_dir, quiet=False, unzip=True)
+
+        print(f"Dataset downloaded to {custom_dir}")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise
 
 
 if __name__ == "__main__":
