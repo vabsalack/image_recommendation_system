@@ -4,7 +4,7 @@
 
 PROJECT_NAME = image_recommendation_system
 PYTHON_VERSION = 3.14
-PYTHON_INTERPRETER = python
+PYTHON_INTERPRETER = uv run python
 
 #################################################################################
 # COMMANDS                                                                      #
@@ -81,9 +81,9 @@ create_environment:
 
 
 ## Make dataset
-.PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) image_recommendation_system/dataset.py
+.PHONY: data-download
+data-download: requirements
+	$(PYTHON_INTERPRETER) -m image_recommendation_system.dataset download
 
 
 #################################################################################
