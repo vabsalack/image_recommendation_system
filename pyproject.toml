@@ -20,6 +20,7 @@ dependencies = [
     "mkdocs",
     "pip",
     "python-dotenv",
+    "rich>=15.0.0",
     "tqdm",
     "typer",
 ]
@@ -62,6 +63,7 @@ torchvision = { index = "pytorch-cuda" }
 [dependency-groups]
 dev = [
     "commitizen>=4.16.4",
+    "kaggle>=2.2.3",
     "matplotlib>=3.11.0",
     "numpy>=2.5.1",
     "pandas>=3.0.3",
