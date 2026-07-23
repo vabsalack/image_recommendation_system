@@ -33,6 +33,8 @@ def main(
 
 @app.command("download")
 def download_dataset_from_kaggle(url=KAGGLE_DATASET_URL, custom_dir=RAW_DATA_DIR):
+    """download all files and folders for a dataset, natively the kaggle api can resume the download if interuption occurs.
+    It download and places all the files and folder from given kaggle dataset into given custom_dir directory"""
 
     try:
         api = KaggleApi()
