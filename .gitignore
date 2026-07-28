@@ -2,7 +2,7 @@
 /data/
 
 # workflow file
-reports/workflow_tracker_.md
+workflow_tracker_.md
 
 # Mac OS-specific storage files
 .DS_Store
